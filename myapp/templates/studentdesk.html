@@ -1,0 +1,478 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Desk</title>
+
+    <link rel="stylesheet" href="{% static 'myapp/css/studentdesk.css' %}">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        📚 Library<span>Hub</span>
+    </div>
+
+    <nav>
+
+        <a href="{% url 'studentdesk' %}">Home</a>
+        <a href="#books">Books</a>
+        <a href="{% url 'mybook' %}">My Books</a>
+        <a href="#notices">Notices</a>
+        <a href="{% url 'myprofile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+
+    </nav>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="left">
+
+        <h1>
+            Welcome Back 👋
+        </h1>
+
+        <h2>
+            Student Library Dashboard
+        </h2>
+
+        <p>
+
+            Search books, manage issued books,
+            view notices and explore your digital library
+            from one place.
+
+        </p>
+
+        <a href="#books">
+    <button>
+        Explore Library
+    </button>
+</a>
+
+    </div>
+
+
+    <div class="right">
+
+        <img src="{% static 'myapp/photos/0.jpeg' %}" alt="">
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats">
+
+    <div class="box">
+
+        <i class="fa-solid fa-book"></i>
+
+        <h2>{{ total_books }}</h2>
+
+        <p>Total Books</p>
+
+    </div>
+
+
+    <div class="box">
+
+        <i class="fa-solid fa-book-open-reader"></i>
+
+        <h2>{{Issued_Books}}</h2>
+
+        <p>Issued Books</p>
+
+    </div>
+
+
+    <div class="box">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <h2>{{ available_books }}</h2>
+
+        <p>Available Books</p>
+
+    </div>
+
+
+    <div class="box">
+
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+        <h2>₹{{ total_fine }}</h2>
+
+        <p>Fine</p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= IMAGE SLIDER ================= -->
+
+<section class="slider">
+
+    <div class="slide">
+
+        <img src="{% static 'myapp/photos/1.jpeg' %}" alt="">
+
+    </div>
+
+    <div class="slide">
+
+        <img src="{% static 'myapp/photos/3.jpeg' %}" alt="">
+
+    </div>
+
+    <div class="slide">
+
+        <img src="{% static 'myapp/photos/9.jpeg' %}" alt="">
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="services">
+
+<h1>Library Services</h1>
+
+<div class="service-box">
+
+<div class="card">
+
+<i class="fa-solid fa-book"></i>
+
+<h2>Available Books</h2>
+
+<p>
+Browse thousands of books available in library.
+</p>
+
+<a href="#books"><button>View</button></a>
+
+</div>
+
+
+
+<div class="card">
+
+<i class="fa-solid fa-book-open"></i>
+
+<h2>Issued Books</h2>
+
+<p>
+Check books currently issued to you.
+</p>
+
+
+<a href="{% url 'mybook' %}"><button>open</button></a>
+
+</div>
+
+
+
+<div class="card">
+
+<i class="fa-solid fa-user"></i>
+
+<h2>My Profile</h2>
+
+<p>
+View your personal profile information.
+</p>
+
+<a href="{% url 'myprofile' %}"><button>Profile</button></a>
+
+</div>
+
+
+
+<div class="card">
+
+<i class="fa-solid fa-bell"></i>
+
+<h2>Latest Notices</h2>
+
+<p>
+
+Read latest library announcements.
+
+</p>
+
+<a href="#notices"><button>Read</button></a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURED BOOKS ================= -->
+
+<section class="featured" id="books">
+
+    <form method="GET" class="search-box">
+
+    <input 
+        type="text" 
+        name="search" 
+        placeholder="Search Book..."
+        value="{{ search|default:'' }}"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+    <h1 class="title">Featured Books</h1>
+
+    <div class="book-container">
+
+        {% for book in page_obj %}
+<div class="book-card">
+
+    {% if book.image %}
+    <img src="{{ book.image.url }}" alt="{{ book.title }}" style="width:100%; max-height:180px; object-fit:cover; border-radius:8px;">
+    {% endif %}
+
+    <h3>{{ book.title }}</h3>
+
+    <p>Author : {{ book.author }}</p>
+
+    {% if book.is_available %}
+        <p style="color:green;">✅ Available</p>
+    {% else %}
+        <p style="color:red;">❌ Issued</p>
+    {% endif %}
+
+    <a href="{% url 'book_detail' book.id %}">
+        <button>Read More</button>
+    </a>
+
+</div>
+{% endfor %}
+<div class="pagination">
+
+    {% if page_obj.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span>
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+
+</div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NOTICE BOARD ================= -->
+
+<section class="notice" id="notices">
+
+
+    <h1 class="title">Latest Notices</h1>
+
+    <div class="notice-box">
+        {% for notice in notices %}
+            <div class="item">
+                📢 {{ notice.title }}
+            </div>
+        {% empty %}
+            <div class="item">
+                Koi notice abhi tak nahi hai.
+            </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+    
+
+</section>
+
+
+<!-- ================= QUICK LINKS ================= -->
+
+<section class="quick">
+
+    <h1 class="title">Quick Access</h1>
+
+    <div class="quick-container">
+
+        <a class="quick-card" href="{% url 'mybook' %}">
+            <i class="fa-solid fa-book-open"></i>
+            <h3>My Books</h3>
+        </a>
+
+        <a class="quick-card" href="#books">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>Search Books</h3>
+        </a>
+
+        <a class="quick-card" href="{% url 'mybook' %}">
+            <i class="fa-solid fa-clock"></i>
+            <h3>Due Date</h3>
+        </a>
+
+        <a class="quick-card" href="{% url 'myprofile' %}">
+            <i class="fa-solid fa-user"></i>
+            <h3>Profile</h3>
+        </a>
+
+        <a class="quick-card" href="{% url 'change_password' %}">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Password</h3>
+        </a>
+
+        <a class="quick-card" href="{% url 'logout' %}">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <h3>Logout</h3>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT LIBRARY ================= -->
+
+<section class="about">
+
+    <div class="about-text">
+
+        <h1>About Our Library</h1>
+
+        <p>
+            Our library provides thousands of books,
+            journals, magazines and digital resources.
+            Students can search, issue and manage books
+            online through this portal.
+        </p>
+
+        <button onclick="window.location.href='{% url 'detaillibrary' %}'">Explore More</button>
+
+    </div>
+
+    <div class="about-image">
+
+        <img src="{% static 'myapp/photos/1.jpeg' %}" alt="">
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact">
+
+    <h1 class="title">Contact Library</h1>
+
+    <div class="contact-box">
+
+        <div>
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <h3>Address</h3>
+
+            <p>ABC College, Gujarat</p>
+
+        </div>
+
+        <div>
+
+            <i class="fa-solid fa-phone"></i>
+
+            <h3>Phone</h3>
+
+            <p>+91 7861041801</p>
+
+        </div>
+
+        <div>
+
+            <i class="fa-solid fa-envelope"></i>
+
+            <h3>Email</h3>
+
+            <p>library@gmail.com</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h2>Library Management System</h2>
+
+    <p>
+
+        Developed for College Project using
+        HTML, CSS, JavaScript and Django.
+
+    </p>
+
+    <div class="social">
+        
+    <a href="https://instagram.com/pranami vandan " target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://linkedin.com/in/tumhara-username" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+    </a>
+    <a href="https://github.com/tumhara-username" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="https://github.com/tumhara-username" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+</div>
+
+    <p class="copy">
+
+        © 2026 All Rights Reserved
+
+    </p>
+
+</footer>
+<script src="{% static 'myapp/js/slider.js' %}"></script>
+</body>
+</html>

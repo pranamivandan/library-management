@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+   {% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Notices</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+
+         <link rel="stylesheet" href="{% static 'myapp/css/notice.css' %}">
+    </head>
+    <body>
+       <a href="{% url 'third' %}">← Back</a>
+
+       {% if messages %}
+           {% for message in messages %}
+               <p>{{ message }}</p>
+           {% endfor %}
+       {% endif %}
+
+       <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Notice title" required>
+    <button type="submit">Add Notice</button>
+</form>
+<div class="notice-list">
+    {% for n in notices %}
+        <div class="notice-item">
+            <span>{{ n.title }}</span>
+            <a href="?delete={{ n.id }}" onclick="return confirm('Delete this notice?')">🗑️ Delete</a>
+        </div>
+    {% empty %}
+        <p>Koi notice nahi hai.</p>
+    {% endfor %}
+</div>
+
+    </body>
+</html>

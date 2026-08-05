@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Registration</h1>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <div class="reg1">
+                <label>Username :</label>
+                <input type="text" name="username" placeholder="username" required>
+            </div>
+
+            <div class="reg1">
+                <label>Email :</label>
+                <input type="email" name="email" placeholder="email" required>
+            </div>
+
+            <div class="reg1">
+                <label>Password :</label>
+                <input type="password" name="password" placeholder="password" required minlength="6">
+            </div>
+
+            <div class="reg1">
+                <label>Mobile :</label>
+                <input type="number" name="mobile" placeholder="mobile" required>
+            </div>
+
+            <div class="reg1">
+                <label>Gender :</label>
+                <input type="radio" name="rdo" value="male" required> Male
+                <input type="radio" name="rdo" value="female"> Female
+            </div>
+
+            <div class="reg1">
+                <label>Address :</label>
+                <textarea name="address" placeholder="current address" required></textarea>
+            </div>
+
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</body>
+</html>

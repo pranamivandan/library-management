@@ -1,0 +1,141 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+    min-height:100vh;
+    padding:40px 0;
+}
+
+.container{
+    width:900px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:15px;
+    padding:35px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    color:#6a11cb;
+    margin-bottom:30px;
+    font-size:32px;
+}
+
+a{
+    text-decoration:none;
+    background:#6a11cb;
+    color:white;
+    padding:10px 20px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+a:hover{
+    background:#4b0ca3;
+}
+
+form{
+    margin-top:25px;
+}
+
+label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#444;
+}
+
+select,
+input[type="date"]{
+    width:100%;
+    padding:12px;
+    border:2px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+    transition:.3s;
+}
+
+select:focus,
+input[type="date"]:focus{
+    outline:none;
+    border-color:#6a11cb;
+    box-shadow:0 0 10px rgba(106,17,203,.3);
+}
+
+button{
+    width:100%;
+    margin-top:25px;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(to right,#6a11cb,#2575fc);
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+
+table{
+    width:100%;
+    margin-top:35px;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+table th{
+    background:linear-gradient(to right,#6a11cb,#2575fc);
+    color:white;
+    padding:14px;
+}
+
+table td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:nth-child(even){
+    background:#f4f4f4;
+}
+
+table tr:hover{
+    background:#ece3ff;
+}
+
+p{
+    margin-top:20px;
+    background:#d4edda;
+    color:#155724;
+    padding:12px;
+    border-radius:8px;
+    border-left:5px solid green;
+}
+
+@media(max-width:950px){
+
+.container{
+    width:95%;
+}
+
+table{
+    font-size:14px;
+}
+
+button{
+    font-size:15px;
+}
+
+}

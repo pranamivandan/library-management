@@ -1,0 +1,55 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'myapp/css/detaillibrary.css' %}">
+      
+       
+    </head>
+    <body>
+ 
+<div class="library-detail-container">
+    <h1>📚 Our Library</h1>
+    <p>Welcome to our college library — a quiet space for learning, research, and growth.</p>
+
+    <div class="library-info">
+        <h2>Library Timings</h2>
+        <ul>
+            <li>Monday - Friday: 9:00 AM - 6:00 PM</li>
+            <li>Saturday: 9:00 AM - 2:00 PM</li>
+            <li>Sunday: Closed</li>
+        </ul>
+    </div>
+
+    <div class="library-info">
+        <h2>Facilities</h2>
+        <ul>
+            <li>Over 10,000+ books across departments</li>
+            <li>Reading hall with 100+ seating capacity</li>
+            <li>Digital library access (e-books, journals)</li>
+            <li>Wi-Fi enabled study zones</li>
+            <li>Photocopy & printing facility</li>
+        </ul>
+    </div>
+
+    <div class="library-info">
+        <h2>Rules</h2>
+        <ul>
+            <li>ID card mandatory for entry</li>
+            <li>Maximum 2 books issued per student at a time</li>
+            <li>Return period: 14 days</li>
+            <li>Late fine: ₹2 per day per book</li>
+        </ul>
+    </div>
+
+    <a href="{% url 'studentdesk' %}" class="btn">⬅ Back to Dashboard</a>
+</div>
+
+        
+        <script src="" async defer></script>
+    </body>
+</html>

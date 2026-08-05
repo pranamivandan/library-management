@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'myapp/css/first.css' %}">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            📚 Library Management System
+        </div>
+
+        <nav>
+            <a href="{% url 'first' %}">Home</a>
+            <a href="#features">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="content">
+            <h1>Welcome to Library Management System</h1>
+
+            <p>
+                Manage books, students, and library records easily.
+                Login as an Admin or Student to continue.
+            </p>
+
+            <div class="buttons">
+               <a href="{% url 'login' %}" class="btn">Admin</a>
+               <a href="{% url 'studentdesk' %}" class="btn">Student</a>
+            </div>
+
+        </div>
+
+         <div class="image">
+            <img src="{% static 'myapp/photos/first.jpg' %}" alt="Library">
+        </div>
+
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+
+        <div class="card">
+            <h3>📖 Book Management</h3>
+            <p>Add, update and manage books easily.</p>
+        </div>
+
+        <div class="card">
+            <h3>👨‍🎓 Student Records</h3>
+            <p>Maintain student information securely.</p>
+        </div>
+
+        <div class="card">
+            <h3>🔄 Book Issue & Return</h3>
+            <p>Track issued books and return dates.</p>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        © 2026 Library Management System | Developed by Vandan<br>
+        Email: library@gmail.com | Phone: +91 9876543210
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+/* ---------------- DARK MODE ---------------- */
+
+body.dark{
+    background:#121212 !important;
+    color:white !important;
+}
+
+/* Header */
+body.dark header{
+    background:#1f1f1f !important;
+}
+
+body.dark .logo{
+    color:#ffffff !important;
+}
+
+body.dark nav a{
+    color:#ffffff !important;
+}
+
+body.dark nav a:hover{
+    color:#00d4ff !important;
+}
+
+/* Cards */
+body.dark .box,
+body.dark .card,
+body.dark .about,
+body.dark .feature,
+body.dark .contact{
+    background:#242424 !important;
+    color:white !important;
+}
+
+/* Headings */
+body.dark .box h2,
+body.dark .card h2,
+body.dark .about h1,
+body.dark .feature h2,
+body.dark .contact h1{
+    color:#00d4ff !important;
+}
+
+/* Paragraphs */
+body.dark .box p,
+body.dark .card p,
+body.dark .about p,
+body.dark .feature p,
+body.dark .contact p{
+    color:#e0e0e0 !important;
+}
+
+/* Buttons */
+body.dark button{
+    background:#6a11cb !important;
+    color:white !important;
+}
+
+/* Footer */
+body.dark footer{
+    background:#000 !important;
+    color:white !important;
+}

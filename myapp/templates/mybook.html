@@ -1,0 +1,37 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Books</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+        <h1>My Issued Books</h1>
+        <a href="{% url 'studentdesk' %}">← Back to Dashboard</a>
+
+        {% for record in records %}
+  <div class="book-card">
+    <h3>{{ record.book.title }}</h3>
+    <p>Author: {{ record.book.author }}</p>
+    <p>Issued on: {{ record.issue_date }}</p>
+    <p>Due date: {{ record.due_date }}</p>
+    <p>Status:
+      {% if record.returned %}
+        Returned
+      {% else %}
+        Not Returned
+      {% endif %}
+    </p>
+    {% if not record.returned and record.fine > 0 %}
+    <p style="color:red;">Overdue! Fine: ₹{{ record.fine }}</p>
+    {% endif %}
+  </div>
+{% empty %}
+  <p>Koi book issue nahi hui abhi tak.</p>
+{% endfor %}
+
+    </body>
+</html>

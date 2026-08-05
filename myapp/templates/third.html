@@ -1,0 +1,253 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/third.css' %}">
+    <link rel="stylesheet" href="{% static 'myapp/css/theme.css' %}">
+</head>
+<body>
+
+<form method="POST">
+{% csrf_token %}
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        📚 My Library
+    </div>
+
+    <nav>
+
+        <a href="{% url 'third' %}">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <button id="theme-toggle">🌙</button>
+
+        {% if request.session.user_id %}
+                <a href="{% url 'logout' %}" class="login-btn">Logout</a>
+        {% else %}
+                  <a href="{% url 'login' %}" class="login-btn">Login</a>
+        {% endif %}
+
+    </nav>
+
+    
+
+      
+
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1>Library Management System</h1>
+
+        <p>
+            Welcome to our Digital Library.
+            Manage Students, Books, Issue Records and Library Activities
+            with an easy dashboard.
+        </p>
+
+        <button type="submit" name="action" value="book">
+            ADD BOOK
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats">
+
+    <div class="box">
+        <h2>{{ total_books }}</h2>
+        <p>Total Books</p>
+    </div>
+
+    <div class="box">
+        <h2>{{ total_students }}</h2>
+        <p>Total Students</p>
+    </div>
+
+    <div class="box">
+        <h2>{{ issued_books }}</h2>
+        <p>Books Issued</p>
+    </div>
+
+    <div class="box">
+        <h2>{{ available_books }}</h2>
+        <p>Available Books</p>
+    </div>
+
+</section>
+<!-- ================= SERVICES ================= -->
+
+<section class="services" id="services">
+
+<h1>Library Services</h1>
+
+<div class="cards">
+
+<button class="card" type="submit" name="action" value="student">
+
+<h2>👨‍🎓 Student</h2>
+
+<p>
+Add New Student Details.
+Manage all student records easily.
+</p>
+
+</button>
+
+<button class="card" type="submit" name="action" value="book">
+
+<h2>📚 Add Book</h2>
+
+<p>
+Add New Books into Library.
+Store complete information.
+</p>
+
+</button>
+
+<button class="card" type="submit" name="action" value="bookall">
+
+<h2>📖 Book List</h2>
+
+<p>
+View all available books
+with complete details.
+</p>
+
+</button>
+
+<button class="card" type="submit" name="action" value="IssueRecord">
+
+<h2>🔄 Issue Book</h2>
+
+<p>
+Issue Books
+to Students.
+</p>
+
+</button>
+
+<button class="card" type="submit" name="action" value="notice">
+
+<h2>🔄 add notice</h2>
+
+<p>
+add any notification
+</p>
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about" id="about">
+
+<h1>About Library</h1>
+
+<p>
+
+Our Library Management System helps students
+and librarians to maintain records of books,
+students and issue details.
+
+The system provides an easy way to add books,
+issue books, manage students and maintain
+library information digitally.
+
+</p>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+<h1>Why Choose Us?</h1>
+
+<div class="feature-box">
+
+<div class="feature">
+
+<h2>⚡ Fast</h2>
+
+<p>
+Easy and quick management.
+</p>
+
+</div>
+
+<div class="feature">
+
+<h2>🔒 Secure</h2>
+
+<p>
+Safe student and book records.
+</p>
+
+</div>
+
+<div class="feature">
+
+<h2>📚 Digital</h2>
+
+<p>
+Paperless Library System.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact" id="contact">
+
+<h1>Contact Us</h1>
+
+<p>Email : library@gmail.com</p>
+
+<p>Phone : +91 9876543210</p>
+
+<p>Address : Gujarat, India</p>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>Library Management System</h2>
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+</footer>
+
+</form>
+<script src="{% static 'myapp/js/theme.js' %}"></script>
+</body>
+</html>

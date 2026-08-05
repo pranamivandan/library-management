@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Student</title>
+
+    <link rel="stylesheet" href="{% static 'myapp/css/student.css' %}">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+
+<h1>🎓 Student Registration</h1>
+
+<p class="subtitle">
+Fill the student details below
+</p>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="input-box">
+
+<label>Student Name</label>
+
+<input type="text"
+name="name"
+placeholder="Enter Student Name"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Roll Number</label>
+
+<input type="number"
+name="roll"
+placeholder="Enter Roll Number"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Email</label>
+
+<input type="email"
+name="email"
+placeholder="Enter Email"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Mobile Number</label>
+
+<input type="text"
+name="mobile"
+placeholder="Enter Mobile Number"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Gender</label>
+
+<div class="gender">
+
+<label>
+<input type="radio"
+name="rdo"
+value="Male"
+required>
+
+Male
+
+</label>
+
+<label>
+
+<input type="radio"
+name="rdo"
+value="Female">
+
+Female
+
+</label>
+
+</div>
+
+</div>
+
+<div class="input-box">
+
+<label>Address</label>
+
+<textarea
+name="address"
+placeholder="Enter Address"
+required></textarea>
+
+</div>
+
+<div class="buttons">
+
+<button type="submit"
+name="action"
+value="submit">
+
+Save
+
+</button>
+
+<button type="button"
+onclick="window.location.href='{% url 'student' %}'">
+
+Reset
+
+</button>
+
+<button type="submit"
+name="action"
+value="back"
+formnovalidate>
+
+Back
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

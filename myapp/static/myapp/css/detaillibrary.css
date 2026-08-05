@@ -1,0 +1,73 @@
+.library-detail-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.library-detail-container h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.library-detail-container > p {
+    text-align: center;
+    color: #777;
+    margin-bottom: 35px;
+}
+
+.library-info {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border-top: 5px solid #7c3aed;
+    transition: transform 0.25s ease;
+}
+
+.library-info:hover {
+    transform: translateY(-4px);
+}
+
+.library-info h2 {
+    color: #7c3aed;
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.library-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.library-info ul li {
+    padding: 7px 0;
+    color: #444;
+    font-size: 14.5px;
+    border-bottom: 1px dashed #eee;
+}
+
+.library-info ul li:last-child {
+    border-bottom: none;
+}
+
+.btn {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    padding: 12px 28px;
+    background: #7c3aed;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #5b21b6;
+}

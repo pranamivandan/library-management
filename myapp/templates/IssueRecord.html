@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Issue Book</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/issuerecord.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Issue Book</h1>
+
+<a href="{% url 'third' %}">← Back</a>
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Book</label>
+    <select name="book" required>
+        {% for b in books %}
+            <option value="{{ b.id }}">{{ b.title }}</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Student</label>
+    <select name="student" required>
+        {% for s in students %}
+            <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Due Date</label>
+    <input type="date" name="due_date" required>
+
+    <br><br>
+
+    <button type="submit">Issue Book</button>
+
+</form>
+
+<br>
+
+<table border="1">
+    <tr>
+        <th>Book</th>
+        <th>Student</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Action</th>
+    </tr>
+
+    {% for r in records %}
+    <tr>
+        <td>{{ r.book.title }}</td>
+        <td>{{ r.student.name }}</td>
+        <td>{{ r.issue_date }}</td>
+        <td>{{ r.due_date }}</td>
+        <td>
+            <a href="{% url 'return_book' r.id %}">Mark Returned</a>
+            &nbsp;|&nbsp;
+            <a href="{% url 'delete_issue_record' r.id %}"
+               style="color:red;"
+               onclick="return confirm('Delete this issue record? If the book has not been returned yet, it will become available again.')">
+                Delete
+            </a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No books issued.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+
+</body>
+</html>

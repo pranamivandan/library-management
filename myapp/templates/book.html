@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+
+    <link rel="stylesheet" href="{% static 'myapp/css/book.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <h1>📚 Add New Book</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="input-box">
+
+            <label>Book Title</label>
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter Book Title"
+                required>
+
+        </div>
+
+        <div class="input-box">
+
+            <label>Author Name</label>
+
+            <input
+                type="text"
+                name="author"
+                placeholder="Enter Author Name"
+                required>
+
+        </div>
+
+        <div class="input-box">
+
+            <label>Book Cover Image</label>
+
+            <input
+                type="file"
+                name="image"
+                accept="image/*">
+
+        </div>
+
+        <div class="check">
+
+            <input
+                type="checkbox"
+                name="is_available"
+                id="available">
+
+            <label for="available">
+                Book Available
+            </label>
+
+            <label>Description</label>
+            <textarea name="description" rows="5" required></textarea>
+
+        </div>
+
+        <div class="btns">
+
+            <button
+                type="submit"
+                name="action"
+                value="submit">
+
+                Save Book
+
+            </button>
+
+            <button
+                type="button"
+                onclick="window.location.href='{% url 'book' %}'">
+
+                Reset
+
+            </button>
+
+            <button
+                type="submit"
+                name="action"
+                value="back"
+                formnovalidate>
+
+                Back
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
